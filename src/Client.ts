@@ -11,6 +11,7 @@ import { constructMessage } from './Inbox/Message';
 import { constructTestsLeft } from './TestsLeft/TestsLeft';
 import { TimeTable } from './TimeTable/DataObjects';
 import { constructTimeTableChanges } from './TimeTableChanges/TimeTableChanges';
+import { WebtopSecurityData, LessonResponse, EventResponse, HomeworkResponse, WebTopUsersResponse, WebTopUserData, PersonalDetails, PushNotifications } from './DataObjects';
 
 
 
@@ -167,6 +168,26 @@ export default class Client {
         return constructMessage((await this._axiosInstance!.get(routes.message(id))).data, id, this._axiosInstance!);
     }
 
+    async changePassword(newPassword: string) {
+        return (await this._axiosInstance!.post(defaultApiRoutes.changePassword, queryStringify({ newPassword }))).data;
+    }
+
+    async changeUsername(currentPassword: string, newUsername: string) {
+        return (await this._axiosInstance!.post(defaultApiRoutes.changeUsername, queryStringify({ currentPassword, newUsername }))).data;
+    }
+
+    async changePersonalDetails(personalDetails: PersonalDetails) {
+        const data = personalDetails;
+        data.emailUponUpdate = data.emailUponUpdate ? 1 : 0;
+        data.showMyCellphone = data.showMyCellphone ? 1 : 0;
+        data.showMyEmail = data.showMyEmail ? 1 : 0;
+        return (await this._axiosInstance!.post(defaultApiRoutes.changeUsername, queryStringify(data))).data;
+    }
+
+    async changePushNotifications(pushNotifications: PushNotifications) {
+        return (await this._axiosInstance!.post(defaultApiRoutes.changePushNotifications, queryStringify(pushNotifications))).data;
+    }
+
     async getAllGradeUsers() {
         const gradeUsers = [] as WebTopUserData[];
         for (let index = 1488; index < 1515; index++) {
@@ -178,83 +199,4 @@ export default class Client {
         return gradeUsers;
     }
 }
-
-
-export interface WebtopSecurityData {
-    securityId: string,
-    securityValue: string
-}
-
-export interface GradeResponse {
-    eventName: string,
-    eventType: string,
-    date: string,
-    subject: string,
-    teacher: string
-    grade: string
-}
-
-export interface EventResponse {
-    // Event begin school hour
-    hourNum: string,
-    // Event end school hour
-    hourEnd: string,
-    // Name of start hour, formatted as: from-to  hourNum || 09:45-10:30  3
-    hourName: string,
-    // Name of end hour, formatted as: from-to  hourNum || 09:45-10:30  3
-    hourEndName: string,
-    // type of event such as - מבחנים
-    hourType: string,
-    // description of event, such as - מבחן יוד עברית (מבחן) לקבוצות: מור ורד, עברית,  י' 3
-    description: string,
-    // room it is occurring in
-    room: string
-}
-
-export interface HomeworkResponse {
-    // class name, example: אנגלית מואצת
-    subject: string,
-    /**
-     * Name of hour, formatted as: from-to  hourNum || 09:45-10:30  3
-     */
-    hourName: string,
-    // school hour it is occurring on
-    hour: string,
-    // happened or not התקיים
-    status: string,
-    // example: מבחן בלשון עברית
-    lessonSubject: string,
-    // what needs to be done
-    homeWork: string
-}
-
-export interface LessonResponse {
-    /**
-     * Class number in day
-     */
-    hourNum: string,
-    /**
-     * Name of hour, formatted as: from-to  hourNum || 09:45-10:30  3
-     */
-    hourName: string,
-    /**
-     * Example:
-     * 'אסמבלר, שטרקמן צבי, חדר: 218'
-     * ClassName, TeacherName, Room: RoomNum
-     */
-    hourData: string[]
-}
-
-export interface WebTopUserData {
-    id: number,
-    key: string,
-    name: string,
-    type: string
-}
-
-export type WebTopUsersResponse = Promise<WebTopUserData[]>;
-export type GradesResponse = Promise<GradeResponse[]>;
-export type LessonsResponse = Promise<LessonResponse[]>;
-export type EventsResponse = Promise<EventResponse[]>;
-export type AllHomeworkResponse = Promise<HomeworkResponse[]>;
 

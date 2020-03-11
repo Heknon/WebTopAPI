@@ -57,7 +57,35 @@ export const defaultApiRoutes = {
      * EXAMPLE:
      * value=אורי OR {value: 'אורי'}
      */
-    searchUsers: 'https://www.webtop.co.il/mobilev2/messagesBox.aspx?action=searchUsers'
+    searchUsers: 'https://www.webtop.co.il/mobilev2/messagesBox.aspx?action=searchUsers',
+    /**
+     * POST REQUEST
+     * FORM DATA
+     * EXAMPLE:
+     * newPassword=password OR {newPassword: 'password'}
+     */
+    changePassword: 'https://www.webtop.co.il/mobilev2/settings.aspx?action=savePassword',
+    /**
+     * POST REQUEST
+     * FORM DATA
+     * EXAMPLE:
+     * currentPassword=password&newUsername=username OR {currentPassword: 'password', newUsername: 'username'}
+     */
+    changeUsername: 'https://www.webtop.co.il/mobilev2/settings.aspx?action=saveUserName',
+    /**
+     * POST REQUEST
+     * FORM DATA
+     * EXAMPLE:
+     * email=email&cellphone=number&emailUponUpdate=0&canReverifiedEmail=false&showMyCellphone=1&showMyEmail=1
+     */
+    changePersonalDetails: 'https://www.webtop.co.il/mobilev2/settings.aspx?action=savePersonalDetails',
+    /**
+     * POST REQUEST
+     * FORM DATA
+     * EXAMPLE:
+     * pushNotification_messages=1&pushNotification_timetableChanges=1&pushNotification_timetableChangesEvents=1&pushNotification_timetableChangesTests=1&pushNotification_timetableChangesGeneralMessages=1&pushNotification_discipline=1&pushNotification_homework=1&pushNotification_grades=1&pushNotification_periodGrades=1&pushNotification_matriculationGrades=1
+     */
+    changePushNotifications: 'https://www.webtop.co.il/mobilev2/settings.aspx?action=savePushNotification'
 
 }
 
