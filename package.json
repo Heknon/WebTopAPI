@@ -1,6 +1,6 @@
 {
   "name": "@heknon/node-webtop",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A Backend for an unofficial WebTop (SmartSchool - Israel) API.",
   "main": "dist/src/index.js",
   "type": "node",
