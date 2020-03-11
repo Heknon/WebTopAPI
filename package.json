@@ -1,0 +1,47 @@
+{
+  "name": "@heknon/node-webtop",
+  "version": "1.4.0",
+  "description": "A Backend for an unofficial WebTop (SmartSchool - Israel) API.",
+  "main": "dist/index.js",
+  "type": "node",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "axios-cookiejar-support": "^0.5.1",
+    "cheerio": "^1.0.0-rc.3",
+    "moment": "^2.24.0",
+    "query-string": "^0.2.0",
+    "tough-cookie": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.7",
+    "@types/node": "^12.12.2",
+    "@types/query-string": "^6.3.0",
+    "@types/tough-cookie": "^2.3.6",
+    "ts-node": "8.6.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index"
+  },
+  "keywords": [
+    "API",
+    "WebTop",
+    "Web Top",
+    "Smart School",
+    "Israel"
+  ],
+  "author": {
+    "name": "Ori Harel",
+    "url": "https://oriharel.me",
+    "email": "development@heknon.com"
+  },
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "runtimeArgs": [
+    "-r",
+    "ts-node/register"
+  ],
+  "args": [
+    "${workspaceFolder}/index.ts"
+  ]
+}
