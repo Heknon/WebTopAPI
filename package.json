@@ -1,6 +1,6 @@
 {
   "name": "@heknon/node-webtop",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "A Backend for an unofficial WebTop (SmartSchool - Israel) API.",
   "main": "dist/src/index.js",
   "type": "node",
@@ -35,7 +35,7 @@
     "url": "https://oriharel.me",
     "email": "development@heknon.com"
   },
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "runtimeArgs": [
     "-r",
