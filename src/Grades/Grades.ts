@@ -58,7 +58,7 @@ const constructGradesFromHTML = ($: CheerioStatic, onlyFilledGrades: boolean): G
         if (gradeCard.children[0].children.length === 1 && onlyFilledGrades) return;
 
         const grade = {} as Grade;
-        const gradeNum = Number.parseInt($(gradeCard.children[0].children[1]).text().match(/\d+/)![0]);
+        const gradeNum = gradeCard.children[0].children.length === 1 ? -1 : Number.parseInt($(gradeCard.children[0].children[1]).text().match(/\d+/)![0]);
         const gradeDate = $(gradeCard.parent.prev).text().match(/\d+/g);
         const gradeDetails = $(gradeCard.children[1].children[0]).text().match(/^[^ \(]+|\(([^)]+)\)/g)!;
 
